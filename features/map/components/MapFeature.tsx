@@ -10,6 +10,7 @@ import { hotels as mockHotels } from "@/features/map/data/hotels";
 import { Hotel } from "@/features/map/types/hotel";
 
 import { searchLocation } from "@/features/map/services/searchLocation";
+import HotelList from "./HotelList";
 
 export default function MapFeature() {
   const [center, setCenter] = useState<[number, number]>([
@@ -29,7 +30,9 @@ export default function MapFeature() {
   const handleShowHotels = () => {
     setHotels(mockHotels);
   };
-
+  const handleViewHotel = (hotel: Hotel) => {
+    setCenter(hotel.location);
+  };
   return (
     <div className="w-full p-5">
       <div className="mb-5 flex flex-col md:flex-row items-center gap-4">
@@ -37,8 +40,15 @@ export default function MapFeature() {
 
         <Toolbar onShowHotels={handleShowHotels} />
       </div>
+      <div className="mt-6 flex flex-col gap-5 sm:flex-row">
+        {hotels.length > 0 && (
+          <HotelList hotels={hotels} onView={handleViewHotel} />
+        )}
 
-      <Map center={center} hotels={hotels} />
+        <div className="flex-1">
+          <Map center={center} hotels={hotels} />
+        </div>
+      </div>
     </div>
   );
 }
