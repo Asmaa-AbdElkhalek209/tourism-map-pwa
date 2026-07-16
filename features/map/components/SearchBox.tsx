@@ -20,7 +20,7 @@ export default function SearchBox({ onSearch }: SearchBoxProps) {
     <form
       dir="rtl"
       onSubmit={handleSubmit}
-      className="mx-auto mb-6 flex max-w-3xl items-center gap-3 rounded-2xl border border-[#B8E3E8] bg-white p-3 shadow-lg"
+      className="mx-auto mb-6 flex md:min-w-2xl md:max-w-5xl items-center gap-3 rounded-2xl border border-[#B8E3E8] bg-white p-3 shadow-lg"
     >
       <input
         name="location"

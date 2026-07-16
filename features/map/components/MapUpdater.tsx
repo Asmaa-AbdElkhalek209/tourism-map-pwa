@@ -2,11 +2,12 @@
 
 import { useEffect } from "react";
 import { useMap } from "react-leaflet";
-import { MapProps } from "../types/map-type";
 
 // Move Map when position changes use (useMap)
-
-export default function MapUpdater({ center }: MapProps) {
+type MapUpdaterProps = {
+  center: [number, number];
+};
+export default function MapUpdater({ center }: MapUpdaterProps) {
   const map = useMap();
 
   useEffect(() => {

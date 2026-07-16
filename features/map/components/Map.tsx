@@ -7,6 +7,6 @@ const MapView = dynamic(() => import("./MapView"), {
   ssr: false,
 });
 
-export default function Map({ center }: MapProps) {
-  return <MapView center={center} />;
+export default function Map({ center, hotels }: MapProps) {
+  return <MapView center={center} hotels={hotels} />;
 }
