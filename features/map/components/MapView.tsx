@@ -1,10 +1,15 @@
 "use client";
 
+import "leaflet-defaulticon-compatibility";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-// import "leaflet/dist/leaflet.css";
-import "../lib/fixLeafletIcon";
+import { COMPANY_LOCATION } from "../constants/company-location";
+
 const MapView = () => {
-  const companyLocation: [number, number] = [30.0444, 31.2357];
+  const companyLocation: [number, number] = [
+    COMPANY_LOCATION.lat,
+    COMPANY_LOCATION.lng,
+  ];
   return (
     <MapContainer
       center={companyLocation}
@@ -18,8 +23,9 @@ const MapView = () => {
       <Marker position={companyLocation}>
         <Popup>
           <div>
-            <h3>برج مصر لسياحة</h3>
-            <p>Cairo, Egypt</p>
+            <h3>{COMPANY_LOCATION.name}</h3>
+            <p>{COMPANY_LOCATION.address}</p>
+            <button className="text-red-700">View Details</button>
           </div>
         </Popup>
       </Marker>
