@@ -1,17 +1,22 @@
-"use client";
-
 type ToolbarProps = {
   onShowHotels: () => void;
+  onMyLocation: () => void;
 };
 
-export default function Toolbar({ onShowHotels }: ToolbarProps) {
+export default function Toolbar({ onShowHotels, onMyLocation }: ToolbarProps) {
   return (
-    <div className="mb-4 flex justify-end">
+    <div className="flex gap-3">
+      <button
+        onClick={onMyLocation}
+        className="rounded-xl border border-[#027C8C] px-5 py-3 text-[#027C8C]"
+      >
+        📍 My Location
+      </button>
       <button
         onClick={onShowHotels}
-        className="rounded-xl bg-[#027C8C] px-5 py-3 font-medium text-white transition hover:bg-[#036673]"
+        className="rounded-xl bg-[#027C8C] px-5 py-3 text-white"
       >
-        🏨 عرض الفنادق
+        🏨 Hotels
       </button>
     </div>
   );

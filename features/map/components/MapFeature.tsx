@@ -56,11 +56,28 @@ export default function MapFeature() {
   const filteredHotels =
     filter === "All" ? hotels : hotels.filter((hotel) => hotel.type === filter);
 
+  const handleMyLocation = () => {
+    if (!navigator.geolocation) {
+      setError("Geolocation is not supported.");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      ({ coords }) => {
+        setCenter([coords.latitude, coords.longitude]);
+      },
+      () => {
+        setError("Unable to get your location.");
+      }
+    );
+  };
   return (
     <div className="w-full p-5">
       <div className="mb-5 flex flex-col gap-4 md:flex-row md:items-center">
-        <Toolbar onShowHotels={handleShowHotels} />
-
+        <Toolbar
+          onShowHotels={handleShowHotels}
+          onMyLocation={handleMyLocation}
+        />
         {hotels.length > 0 && (
           <HotelFilter value={filter} onChange={setFilter} />
         )}
